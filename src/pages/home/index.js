@@ -3,48 +3,10 @@ import "./styles.css";
 
 export default function App() {
   const [taxa] = useState({
-    master: [
-      4.54,
-      6.01,
-      7.01,
-      8.01,
-      8.99,
-      10.31,
-      11.84,
-      12.94,
-      13.94,
-      14.44,
-      15.74,
-      16.04,
-    ],
-    visa: [
-      1.54,
-      2.01,
-      3.01,
-      10.01,
-      8.99,
-      10.31,
-      11.84,
-      12.94,
-      13.94,
-      14.44,
-      15.74,
-      16.04,
-    ],
-    elo: [
-      15.54,
-      20.01,
-      30.01,
-      10.01,
-      8.99,
-      10.31,
-      11.84,
-      12.94,
-      13.94,
-      14.44,
-      15.74,
-      16.04,
-    ],
+    master: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+    visa: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+    hiper: [2.0, 2.6, 2.6, 2.6, 2.6, 2.6, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8],
+    elo: [2.99, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
   });
 
   const [valorCompra, setValorCompra] = useState(0);
@@ -55,7 +17,7 @@ export default function App() {
   const [cartao, setCartao] = useState("0");
 
   useEffect(() => {
-    console.log(typeof cartao);
+    console.log(cartao);
     function handleChangeInput() {
       if (!valorCompra) {
         setParcelas([]);
@@ -64,7 +26,7 @@ export default function App() {
       if (isNaN(valorEntrada)) {
         setValorEntrada(0);
       }
-      if (cartao === "0") {
+      if (cartao === "0" || cartao === "1") {
         const parcelas = taxa.master.map((item, index) => {
           const valor = valorCompra - valorEntrada;
           const percentual = (item * valor) / 100;
@@ -88,8 +50,8 @@ export default function App() {
         });
         setParcelas(parcelas);
       }
-      if (cartao === "1") {
-        const parcelas = taxa.visa.map((item, index) => {
+      if (cartao === "2") {
+        const parcelas = taxa.hiper.map((item, index) => {
           const valor = valorCompra - valorEntrada;
           const percentual = (item * valor) / 100;
           const valueReturn = valor + percentual;
@@ -112,7 +74,7 @@ export default function App() {
         });
         setParcelas(parcelas);
       }
-      if (cartao === "2") {
+      if (cartao === "3") {
         const parcelas = taxa.elo.map((item, index) => {
           const valor = valorCompra - valorEntrada;
           const percentual = (item * valor) / 100;
@@ -177,7 +139,8 @@ export default function App() {
               <select name="select" onChange={(e) => setCartao(e.target.value)}>
                 <option value={"0"}>Mastercard</option>
                 <option value={"1"}>Visa</option>
-                <option value={"2"}>Elo</option>
+                <option value={"2"}>Hipercard</option>
+                <option value={"3"}>Elo</option>
               </select>
             </div>
           </form>
@@ -217,9 +180,10 @@ export default function App() {
               href={
                 "https://api.whatsapp.com/send?phone=5581995167878&text=Tenho%20interesse"
               }
-              target={"_blank"}
+              target={"blank"}
             >
-              <em class="fab fa-whatsapp"></em> ENTRE EM CONTATO PELO WHATSAPP
+              <em className="fab fa-whatsapp"></em> ENTRE EM CONTATO PELO
+              WHATSAPP
             </a>
           </div>
         </div>
