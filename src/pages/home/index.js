@@ -159,7 +159,7 @@ export default function App() {
               <input
                 type="number"
                 required
-                value={valorCompra}
+                autoFocus={true}
                 onChange={(e) => setValorCompra(e.target.value)}
               />
             </div>
@@ -169,7 +169,6 @@ export default function App() {
               <input
                 type="number"
                 required
-                value={valorEntrada}
                 onChange={(e) => setValorEntrada(e.target.value)}
               />
             </div>
@@ -193,11 +192,16 @@ export default function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Débito </td>
-                <td>{debitoTotal}</td>
-                <td>{debitoTotal}</td>
-              </tr>
+              {debitoTotal === 0 ? (
+                <tr></tr>
+              ) : (
+                <tr>
+                  <td>Débito </td>
+                  <td>{debitoTotal}</td>
+                  <td>{debitoTotal}</td>
+                </tr>
+              )}
+
               {parcelas.map((item) => (
                 <tr key={item.parcela.toString()}>
                   <td>{item.parcela} x</td>
