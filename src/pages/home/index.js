@@ -65,7 +65,7 @@ export default function App() {
                 type="number"
                 required
                 value={valorCompra}
-                onChange={(e) => setValorCompra(parseInt(e.target.value))}
+                onChange={(e) => setValorCompra(parseFloat(e.target.value))}
               />
             </div>
 
@@ -75,35 +75,41 @@ export default function App() {
                 type="number"
                 required
                 value={valorEntrada}
-                onChange={(e) => setValorEntrada(parseInt(e.target.value))}
+                onChange={(e) => setValorEntrada(parseFloat(e.target.value))}
               />
             </div>
           </form>
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>PARCELAS</th>
-              <th>VALOR PARCELAS</th>
-              <th>VALOR TOTAL</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Débito </td>
-              <td>R$&nbsp;{debitoTotal}</td>
-              <td>R$&nbsp;{debitoTotal}</td>
-            </tr>
-            {parcelas.map((item, key) => (
-              <tr key={key}>
-                <td>{item.parcela} x</td>
-                <td>R$&nbsp;{item.valorParcelas.toLocaleString("pt-BR")}</td>
-                <td>R$&nbsp;{item.valorTotal.toLocaleString("pt-BR")}</td>
+        <div className={"boxTable"}>
+          <table>
+            <thead>
+              <tr>
+                <th>PARCELAS</th>
+                <th>VALOR PARCELAS</th>
+                <th>VALOR TOTAL</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Débito </td>
+                <td>R$&nbsp;{debitoTotal.toFixed(2)}</td>
+                <td>R$&nbsp;{debitoTotal.toFixed(2)}</td>
+              </tr>
+              {parcelas.map((item, key) => (
+                <tr key={key}>
+                  <td>{item.parcela} x</td>
+                  <td>
+                    R$&nbsp;
+                    {item.valorParcelas.toFixed(2).toLocaleString("pt-BR")}
+                  </td>
+                  <td>
+                    R$&nbsp;{item.valorTotal.toFixed(2).toLocaleString("pt-BR")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

@@ -16,10 +16,26 @@
 }
 
 .boxImage {
-  flex: 1;
-  margin: 0 0 20px 0;
-  max-width: 400px;
+  display: flex;
+  max-width: 300px;
   margin: 0 auto;
+}
+
+.container {
+  font-family: "Roboto";
+  margin: 15px 25px;
+  border-radius: 15px;
+  padding: 10px 0 30px;
+  background: white;
+}
+form {
+}
+.boxTable {
+}
+
+.item {
+  text-align: center;
+  flex-grow: 1;
 }
 
 * {
@@ -30,14 +46,6 @@ tr:nth-child(odd) {
 }
 tr:nth-child(even) {
   background-color: #f5f5f5;
-}
-
-.container {
-  font-family: "Roboto";
-  margin: 15px 25px;
-  border-radius: 15px;
-  padding: 10px 0px 30px;
-  background: white;
 }
 
 .group {
