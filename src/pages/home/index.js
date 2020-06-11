@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -18,30 +18,41 @@ export default function App() {
   ]);
 
   const [valorCompra, setValorCompra] = useState(0);
-  const [valorEntrada] = useState(0);
+  const [valorEntrada, setValorEntrada] = useState(0);
   const [parcelas, setParcelas] = useState([]);
+  const [taxaDebito] = useState(2);
+  const [debitoTotal, setDebitoTotal] = useState(0);
 
-  function handleChangeInput(value = 0) {
-    setValorCompra(value);
-
+  function handleChangeInputCredit() {
     const arrayNovo = taxa.map((item, index) => {
-      const percentual = (item * valorCompra) / 100;
-      const valueReturn = valorCompra + percentual;
-      const valorParcelas = (valorCompra + percentual) / (index + 1);
-
-      const percentualDebito = (2 * valorCompra) / 100;
-      const debitoTotal = valorCompra + percentualDebito;
+      const valor = valorCompra - valorEntrada;
+      const percentual = (item * valor) / 100;
+      const valueReturn = valor + percentual;
+      const valorParcelas = (valor + percentual) / (index + 1);
 
       return {
         parcela: index + 1,
         valorTotal: valueReturn,
         percentual: percentual,
         valorParcelas: valorParcelas,
-        debitoTotal: debitoTotal,
       };
     });
     setParcelas(arrayNovo);
   }
+
+  function handleChangeInputDebito() {
+    const valor = valorCompra - valorEntrada;
+    const percentualDeb = (taxaDebito * valor) / 100;
+    setDebitoTotal(valor + percentualDeb);
+  }
+
+  useEffect(() => {
+    handleChangeInputCredit();
+  }, [valorCompra, valorEntrada]);
+
+  useEffect(() => {
+    handleChangeInputDebito();
+  }, [valorCompra, valorEntrada]);
 
   return (
     <>
@@ -54,7 +65,7 @@ export default function App() {
                 type="number"
                 required
                 value={valorCompra}
-                onChange={(e) => handleChangeInput(parseInt(e.target.value))}
+                onChange={(e) => setValorCompra(parseInt(e.target.value))}
               />
             </div>
 
@@ -64,7 +75,7 @@ export default function App() {
                 type="number"
                 required
                 value={valorEntrada}
-                onChange={(e) => handleChangeInput(parseInt(e.target.value))}
+                onChange={(e) => setValorEntrada(parseInt(e.target.value))}
               />
             </div>
           </form>
@@ -81,8 +92,8 @@ export default function App() {
           <tbody>
             <tr>
               <td>Débito </td>
-              <td>R$&nbsp;</td>
-              <td>R$&nbsp;</td>
+              <td>R$&nbsp;{debitoTotal}</td>
+              <td>R$&nbsp;{debitoTotal}</td>
             </tr>
             {parcelas.map((item, key) => (
               <tr key={key}>
