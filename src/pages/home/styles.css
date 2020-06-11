@@ -52,7 +52,8 @@ tr:nth-child(even) {
   flex: 1;
   margin-bottom: 45px;
 }
-input {
+input,
+select {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
