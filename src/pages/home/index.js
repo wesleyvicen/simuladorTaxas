@@ -23,36 +23,49 @@ export default function App() {
   const [taxaDebito] = useState(2);
   const [debitoTotal, setDebitoTotal] = useState(0);
 
-  function handleChangeInputCredit() {
-    const arrayNovo = taxa.map((item, index) => {
+  useEffect(() => {
+    function handleChangeInput() {
+      if (!valorCompra) {
+        setParcelas([]);
+        return;
+      }
+      if (isNaN(valorEntrada)) {
+        setValorEntrada(0);
+      }
+      const parcelas = taxa.map((item, index) => {
+        const valor = valorCompra - valorEntrada;
+        const percentual = (item * valor) / 100;
+        const valueReturn = valor + percentual;
+        const valorParcelas = (valor + percentual) / (index + 1);
+
+        return {
+          parcela: index + 1,
+          valorTotal: valueReturn.toLocaleString("pt-BR", {
+            currency: "BRL",
+            currencyDisplay: "symbol",
+            style: "currency",
+          }),
+          percentual: percentual,
+          valorParcelas: valorParcelas.toLocaleString("pt-BR", {
+            currency: "BRL",
+            currencyDisplay: "symbol",
+            style: "currency",
+          }),
+        };
+      });
+      setParcelas(parcelas);
+
       const valor = valorCompra - valorEntrada;
-      const percentual = (item * valor) / 100;
-      const valueReturn = valor + percentual;
-      const valorParcelas = (valor + percentual) / (index + 1);
-
-      return {
-        parcela: index + 1,
-        valorTotal: valueReturn,
-        percentual: percentual,
-        valorParcelas: valorParcelas,
-      };
-    });
-    setParcelas(arrayNovo);
-  }
-
-  function handleChangeInputDebito() {
-    const valor = valorCompra - valorEntrada;
-    const percentualDeb = (taxaDebito * valor) / 100;
-    setDebitoTotal(valor + percentualDeb);
-  }
-
-  useEffect(() => {
-    handleChangeInputCredit();
-  }, [valorCompra, valorEntrada]);
-
-  useEffect(() => {
-    handleChangeInputDebito();
-  }, [valorCompra, valorEntrada]);
+      const percentualDeb = (taxaDebito * valor) / 100;
+      const debTotal = (valor + percentualDeb).toLocaleString("pt-BR", {
+        currency: "BRL",
+        currencyDisplay: "symbol",
+        style: "currency",
+      });
+      setDebitoTotal(debTotal);
+    }
+    handleChangeInput();
+  }, [valorCompra, valorEntrada, taxa, taxaDebito]);
 
   return (
     <>
@@ -65,7 +78,7 @@ export default function App() {
                 type="number"
                 required
                 value={valorCompra}
-                onChange={(e) => setValorCompra(parseFloat(e.target.value))}
+                onChange={(e) => setValorCompra(e.target.value)}
               />
             </div>
 
@@ -75,7 +88,7 @@ export default function App() {
                 type="number"
                 required
                 value={valorEntrada}
-                onChange={(e) => setValorEntrada(parseFloat(e.target.value))}
+                onChange={(e) => setValorEntrada(e.target.value)}
               />
             </div>
           </form>
@@ -92,19 +105,14 @@ export default function App() {
             <tbody>
               <tr>
                 <td>Débito </td>
-                <td>R$&nbsp;{debitoTotal.toFixed(2)}</td>
-                <td>R$&nbsp;{debitoTotal.toFixed(2)}</td>
+                <td>{debitoTotal}</td>
+                <td>{debitoTotal}</td>
               </tr>
-              {parcelas.map((item, key) => (
-                <tr key={key}>
+              {parcelas.map((item) => (
+                <tr key={item.parcela.toString()}>
                   <td>{item.parcela} x</td>
-                  <td>
-                    R$&nbsp;
-                    {item.valorParcelas.toFixed(2).toLocaleString("pt-BR")}
-                  </td>
-                  <td>
-                    R$&nbsp;{item.valorTotal.toFixed(2).toLocaleString("pt-BR")}
-                  </td>
+                  <td>{item.valorParcelas}</td>
+                  <td>{item.valorTotal}</td>
                 </tr>
               ))}
             </tbody>
