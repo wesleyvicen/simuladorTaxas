@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import "./styles.css";
 
-function Home() {
-  let [taxa, setTaxa] = useState([
+export default function App() {
+  const [taxa] = useState([
     4.54,
     6.01,
     7.01,
@@ -18,90 +17,83 @@ function Home() {
     16.04,
   ]);
 
-  let [valorCompra, setValor] = useState(0);
-  let [valoEntrada, setValorEntrada] = useState(0);
+  const [valorCompra, setValorCompra] = useState(0);
+  const [valorEntrada] = useState(0);
+  const [parcelas, setParcelas] = useState([]);
 
-  let [taxaDebito, setTaxaDebito] = useState(2);
-  let [percentualDebito, setPercentualDebito] = useState(0);
-  let [debitoTotal, setDebitoTotal] = useState(0);
+  function handleChangeInput(value = 0) {
+    setValorCompra(value);
 
-  let [valorParcelas, setValorParcelas] = useState([]);
-  let [valorTotal, setValorTotal] = useState([]);
-  let [percentual, setPercentual] = useState([]);
+    const arrayNovo = taxa.map((item, index) => {
+      const percentual = (item * valorCompra) / 100;
+      const valueReturn = valorCompra + percentual;
+      const valorParcelas = (valorCompra + percentual) / (index + 1);
 
-  function calcCredito() {
-    let i = 0;
-    for (let i = 0; i < taxa.length; i++) {
-      setPercentual((vt) => [...vt, (taxa[i] * valorCompra) / 100]);
-      setValorTotal((vt) => [...vt, valorCompra + percentual]);
-      setValorParcelas((vt) => [...vt, (valorCompra + percentual) / (i + 1)]);
-      console.log(valorTotal);
-    }
-  }
-  function calcDebito() {
-    setPercentualDebito((taxaDebito * valorCompra) / 100);
-    setDebitoTotal(valorCompra + percentualDebito - valoEntrada);
-  }
+      const percentualDebito = (2 * valorCompra) / 100;
+      const debitoTotal = valorCompra + percentualDebito;
 
-  function handleChangeInput(value) {
-    setValor(value);
-    calcDebito();
-    calcCredito();
+      return {
+        parcela: index + 1,
+        valorTotal: valueReturn,
+        percentual: percentual,
+        valorParcelas: valorParcelas,
+        debitoTotal: debitoTotal,
+      };
+    });
+    setParcelas(arrayNovo);
   }
 
   return (
     <>
       <div className={"container"}>
         <div className={"boxImage"}>
-          <img className={"image"} src={require("../../images/logo.png")} />
-        </div>
-        <form>
-          <div className="group">
-            <label>Valor da compra:</label>
-            <input
-              type="number"
-              required
-              value={valorCompra}
-              onChange={(e) => handleChangeInput(parseInt(e.target.value))}
-            />
-          </div>
+          <form>
+            <div className="group">
+              <label>Valor da compra:</label>
+              <input
+                type="number"
+                required
+                value={valorCompra}
+                onChange={(e) => handleChangeInput(parseInt(e.target.value))}
+              />
+            </div>
 
-          <div className="group">
-            <label>Entrada em dinheiro:</label>
-            <input
-              type="text"
-              required
-              value={valoEntrada}
-              onChange={(e) => handleChangeInput(parseInt(e.target.value))}
-            />
-          </div>
-        </form>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>PARCELAS</th>
-            <th>VALOR PARCELAS</th>
-            <th>VALOR TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Débito </td>
-            <td>R$&nbsp;{debitoTotal}</td>
-            <td>R$&nbsp;{debitoTotal}</td>
-          </tr>
-          {taxa.map((item, key) => (
+            <div className="group">
+              <label>Entrada em dinheiro:</label>
+              <input
+                type="number"
+                required
+                value={valorEntrada}
+                onChange={(e) => handleChangeInput(parseInt(e.target.value))}
+              />
+            </div>
+          </form>
+        </div>
+
+        <table>
+          <thead>
             <tr>
-              <td>{key + 1} x</td>
-              <td>R$&nbsp;{valorParcelas}</td>
-              <td>R$&nbsp;{valorTotal}</td>
+              <th>PARCELAS</th>
+              <th>VALOR PARCELAS</th>
+              <th>VALOR TOTAL</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Débito </td>
+              <td>R$&nbsp;</td>
+              <td>R$&nbsp;</td>
+            </tr>
+            {parcelas.map((item, key) => (
+              <tr key={key}>
+                <td>{item.parcela} x</td>
+                <td>R$&nbsp;{item.valorParcelas.toLocaleString("pt-BR")}</td>
+                <td>R$&nbsp;{item.valorTotal.toLocaleString("pt-BR")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
-
-export default Home;

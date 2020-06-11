@@ -18,6 +18,8 @@
 .boxImage {
   flex: 1;
   margin: 0 0 20px 0;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 * {
@@ -26,10 +28,10 @@
 
 .container {
   font-family: "Roboto";
-  margin: 0 auto;
-  max-width: 400px;
-  background: transparent;
-  padding: 10px 50px 50px;
+  margin: 15px 25px;
+  border-radius: 15px;
+  padding: 10px 25px 30px;
+  background: white;
 }
 
 .group {
@@ -43,6 +45,13 @@ input {
   width: 300px;
   border: none;
   border-bottom: 1px solid #757575;
+}
+textarea:focus,
+input:focus,
+select:focus {
+  box-shadow: 0 0 0 0;
+
+  outline: 0;
 }
 
 label {
