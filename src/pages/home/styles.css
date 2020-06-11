@@ -25,7 +25,7 @@
   font-family: "Roboto";
   margin: 15px 25px;
   border-radius: 15px;
-  padding: 10px 0 30px;
+  padding: 15px 0;
   background: white;
 }
 form {
@@ -59,7 +59,7 @@ select {
   display: block;
   width: 300px;
   border: none;
-  border-bottom: 1px solid #757575;
+  border-bottom: 1px solid black;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -76,12 +76,27 @@ select {
   text-indent: 1px;
   text-overflow: "";
 }
+.whatsapp {
+  background-color: black;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+.divw {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 textarea:focus,
 input:focus,
 select:focus {
   box-shadow: 0 0 0 0;
-  border: 0 none;
+  border-bottom: solid black 1.5px;
   outline-style: none;
 }
 
