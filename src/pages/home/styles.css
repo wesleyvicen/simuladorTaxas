@@ -36,7 +36,7 @@ tr:nth-child(even) {
   font-family: "Roboto";
   margin: 15px 25px;
   border-radius: 15px;
-  padding: 10px 25px 30px;
+  padding: 10px 0px 30px;
   background: white;
 }
 
