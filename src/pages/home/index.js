@@ -12,12 +12,11 @@ export default function App() {
   const [valorCompra, setValorCompra] = useState(0);
   const [valorEntrada, setValorEntrada] = useState(0);
   const [parcelas, setParcelas] = useState([]);
-  const [taxaDebito] = useState(2);
+  const [taxaDebito, setTaxaDebito] = useState(2);
   const [debitoTotal, setDebitoTotal] = useState(0);
   const [cartao, setCartao] = useState("0");
 
   useEffect(() => {
-    console.log(cartao);
     function handleChangeInput() {
       if (!valorCompra) {
         setParcelas([]);
@@ -98,7 +97,11 @@ export default function App() {
         });
         setParcelas(parcelas);
       }
-
+      if (cartao === "0" || cartao === "1") {
+        setTaxaDebito(1);
+      } else {
+        setTaxaDebito(2);
+      }
       const valor = valorCompra - valorEntrada;
       const percentualDeb = (taxaDebito * valor) / 100;
       const debTotal = (valor + percentualDeb).toLocaleString("pt-BR", {
