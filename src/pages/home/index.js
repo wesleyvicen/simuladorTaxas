@@ -52,10 +52,10 @@ export default function App() {
   const [parcelas, setParcelas] = useState([]);
   const [taxaDebito] = useState(2);
   const [debitoTotal, setDebitoTotal] = useState(0);
-  const [cartao, setCartao] = useState(0);
+  const [cartao, setCartao] = useState("0");
 
   useEffect(() => {
-    console.log(cartao);
+    console.log(typeof cartao);
     function handleChangeInput() {
       if (!valorCompra) {
         setParcelas([]);
@@ -64,29 +64,78 @@ export default function App() {
       if (isNaN(valorEntrada)) {
         setValorEntrada(0);
       }
+      if (cartao === "0") {
+        const parcelas = taxa.master.map((item, index) => {
+          const valor = valorCompra - valorEntrada;
+          const percentual = (item * valor) / 100;
+          const valueReturn = valor + percentual;
+          const valorParcelas = (valor + percentual) / (index + 1);
 
-      const parcelas = taxa.master.map((item, index) => {
-        const valor = valorCompra - valorEntrada;
-        const percentual = (item * valor) / 100;
-        const valueReturn = valor + percentual;
-        const valorParcelas = (valor + percentual) / (index + 1);
+          return {
+            parcela: index + 1,
+            valorTotal: valueReturn.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+            percentual: percentual,
+            valorParcelas: valorParcelas.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+          };
+        });
+        setParcelas(parcelas);
+      }
+      if (cartao === "1") {
+        const parcelas = taxa.visa.map((item, index) => {
+          const valor = valorCompra - valorEntrada;
+          const percentual = (item * valor) / 100;
+          const valueReturn = valor + percentual;
+          const valorParcelas = (valor + percentual) / (index + 1);
 
-        return {
-          parcela: index + 1,
-          valorTotal: valueReturn.toLocaleString("pt-BR", {
-            currency: "BRL",
-            currencyDisplay: "symbol",
-            style: "currency",
-          }),
-          percentual: percentual,
-          valorParcelas: valorParcelas.toLocaleString("pt-BR", {
-            currency: "BRL",
-            currencyDisplay: "symbol",
-            style: "currency",
-          }),
-        };
-      });
-      setParcelas(parcelas);
+          return {
+            parcela: index + 1,
+            valorTotal: valueReturn.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+            percentual: percentual,
+            valorParcelas: valorParcelas.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+          };
+        });
+        setParcelas(parcelas);
+      }
+      if (cartao === "2") {
+        const parcelas = taxa.elo.map((item, index) => {
+          const valor = valorCompra - valorEntrada;
+          const percentual = (item * valor) / 100;
+          const valueReturn = valor + percentual;
+          const valorParcelas = (valor + percentual) / (index + 1);
+
+          return {
+            parcela: index + 1,
+            valorTotal: valueReturn.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+            percentual: percentual,
+            valorParcelas: valorParcelas.toLocaleString("pt-BR", {
+              currency: "BRL",
+              currencyDisplay: "symbol",
+              style: "currency",
+            }),
+          };
+        });
+        setParcelas(parcelas);
+      }
 
       const valor = valorCompra - valorEntrada;
       const percentualDeb = (taxaDebito * valor) / 100;
@@ -98,7 +147,7 @@ export default function App() {
       setDebitoTotal(debTotal);
     }
     handleChangeInput();
-  }, [valorCompra, valorEntrada, taxa, taxaDebito]);
+  }, [valorCompra, valorEntrada, taxa, taxaDebito, cartao]);
 
   return (
     <>
@@ -125,13 +174,11 @@ export default function App() {
               />
             </div>
             <div className="group">
-              <label>Cartão:</label>
+              <label>Bandeira do Cartão:</label>
               <select name="select" onChange={(e) => setCartao(e.target.value)}>
-                <option value={0}>Master</option>
-                <option value={1} selected>
-                  Visa
-                </option>
-                <option value={2}>Elo</option>
+                <option value={"0"}>Mastercard</option>
+                <option value={"1"}>Visa</option>
+                <option value={"2"}>Elo</option>
               </select>
             </div>
           </form>
