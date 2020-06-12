@@ -75,6 +75,7 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: "";
+  background: transparent;
 }
 .whatsapp {
   background-color: black;
