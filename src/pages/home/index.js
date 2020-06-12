@@ -132,6 +132,7 @@ export default function App() {
                 required
                 autoFocus={true}
                 onChange={(e) => setValorCompra(e.target.value)}
+                placeholder={"R$ 0,00"}
               />
             </div>
 
@@ -141,6 +142,7 @@ export default function App() {
                 type="number"
                 required
                 onChange={(e) => setValorEntrada(e.target.value)}
+                placeholder={"R$ 0,00"}
               />
             </div>
             <div className="group">
