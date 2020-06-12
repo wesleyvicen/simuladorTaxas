@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 export default function App() {
-  const [taxa] = useState({
-    master: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
-    visa: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
-    hiper: [2.0, 2.6, 2.6, 2.6, 2.6, 2.6, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8],
-    elo: [2.99, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
-  });
-
   const [valorCompra, setValorCompra] = useState(0);
   const [valorEntrada, setValorEntrada] = useState(0);
   const [parcelas, setParcelas] = useState([]);
@@ -17,6 +10,12 @@ export default function App() {
   const [cartao, setCartao] = useState("0");
 
   useEffect(() => {
+    const taxa = {
+      master: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+      visa: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+      hiper: [2.0, 2.6, 2.6, 2.6, 2.6, 2.6, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8],
+      elo: [2.99, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
+    };
     function handleChangeInput() {
       if (!valorCompra) {
         setParcelas([]);
@@ -112,11 +111,18 @@ export default function App() {
       setDebitoTotal(debTotal);
     }
     handleChangeInput();
-  }, [valorCompra, valorEntrada, taxa, taxaDebito, cartao]);
+  }, [valorCompra, valorEntrada, taxaDebito, cartao]);
 
   return (
     <>
       <div className={"container"}>
+        <div className={"logo"}>
+          <img
+            src={require("../../images/logo.png")}
+            width="300"
+            alt={"Memeu Cell"}
+          />
+        </div>
         <div className={"boxImage"}>
           <form>
             <div className="group">

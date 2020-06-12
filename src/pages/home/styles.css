@@ -7,30 +7,22 @@
 .box {
   background: #fff;
 }
-.image {
-  width: 10vh;
-  height: 10vh;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .boxImage {
-  display: flex;
-  max-width: 300px;
   margin: 0 auto;
 }
 
 .container {
   font-family: "Roboto";
-  margin: 15px 25px;
   border-radius: 15px;
   padding: 15px 0;
   background: white;
 }
-form {
-}
-.boxTable {
+
+.logo {
+  display: flex;
+  max-width: 300px;
+  margin: 2% auto 5%;
 }
 
 .item {
@@ -50,14 +42,13 @@ tr:nth-child(even) {
 
 .group {
   flex: 1;
-  margin-bottom: 45px;
+  margin: 0 15px 45px;
 }
 input,
 select {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
-  display: block;
-  width: 300px;
+  width: 100%;
   border: none;
   border-bottom: 1px solid black;
 }
@@ -121,4 +112,31 @@ tbody {
 td {
   text-align: center;
   padding: 8px;
+}
+
+@media only screen and (min-width: 320px) {
+  .container {
+    margin: 15px 35px;
+  }
+}
+
+@media only screen and (min-width: 620px) {
+  .container {
+    margin: 15px 100px;
+  }
+}
+@media only screen and (min-width: 920px) {
+  .container {
+    margin: 20px 150px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .container {
+    margin: 20px 200px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .container {
+    margin: 20px 250px;
+  }
 }
