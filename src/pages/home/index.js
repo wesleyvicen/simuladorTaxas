@@ -11,10 +11,10 @@ export default function App() {
 
   useEffect(() => {
     const taxa = {
-      master: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
-      visa: [2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
-      hiper: [2.0, 2.6, 2.6, 2.6, 2.6, 2.6, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8],
-      elo: [2.99, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
+      master: [3.8, 4.9, 5.7, 6.7, 7.3, 7.9, 8.7, 9.5, 10.1, 11, 11.8, 12.7],
+      visa: [3.8, 4.9, 5.7, 6.7, 7.3, 7.9, 8.7, 9.5, 10.1, 11, 11.8, 12.7],
+      hiper: [3.8, 4.9, 5.7, 6.7, 7.3, 7.9, 8.7, 9.5, 10.1, 11, 11.8, 12.7],
+      elo: [4.486, 5.7, 6.6, 7.5, 8.3, 9, 9.9, 10.8, 11.5, 12.2, 13, 13.9],
     };
     function handleChangeInput() {
       if (!valorCompra) {
@@ -96,8 +96,8 @@ export default function App() {
         });
         setParcelas(parcelas);
       }
-      if (cartao === "0" || cartao === "1") {
-        setTaxaDebito(1);
+      if (cartao === "0" || cartao === "1" || cartao === "2") {
+        setTaxaDebito(1.3);
       } else {
         setTaxaDebito(2);
       }
@@ -119,7 +119,7 @@ export default function App() {
         <div className={"logo"}>
           <img
             src={require("../../images/logo.png")}
-            width="300"
+            width="250"
             alt={"Memeu Cell"}
           />
         </div>

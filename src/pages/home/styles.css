@@ -21,7 +21,7 @@
 
 .logo {
   display: flex;
-  max-width: 300px;
+  max-width: 250px;
   margin: 2% auto 5%;
 }
 
@@ -116,7 +116,7 @@ td {
 
 @media only screen and (min-width: 320px) {
   .container {
-    margin: 15px 35px;
+    margin: 15px 25px;
   }
 }
 
