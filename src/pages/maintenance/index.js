@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Back, Right, Box } from "./styles";
+import { Container, Back, Box } from "./styles";
 
 function maintenance() {
   return (
