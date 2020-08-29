@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-//import App from "./pages/home";
-import Maintenance from "./pages/maintenance";
+import App from "./pages/home";
+//import Maintenance from "./pages/maintenance";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <App/> */}
-    <Maintenance />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
