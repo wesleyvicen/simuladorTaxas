@@ -73,9 +73,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .MuiCardContent-root{
-  padding:0;
-  border:10px;
+  padding:0!important;
+  border:0px;
 }
+
 
 .MuiCard-root{
   margin-bottom:10px;
