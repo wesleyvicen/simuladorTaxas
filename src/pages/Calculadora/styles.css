@@ -122,22 +122,22 @@ td {
 }
 
 @media only screen and (min-width: 620px) {
-  .container {
+  Container {
     margin: 15px 100px;
   }
 }
 @media only screen and (min-width: 920px) {
-  .container {
+  container {
     margin: 20px 150px;
   }
 }
 @media only screen and (min-width: 1200px) {
-  .container {
+  Container {
     margin: 20px 200px;
   }
 }
 @media only screen and (min-width: 1400px) {
-  .container {
+  Container {
     margin: 20px 250px;
   }
 }
