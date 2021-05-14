@@ -82,13 +82,24 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom:10px;
   @media only screen and (min-width: 320px) {
   
-  margin: 15px 25px;
+ h5{
+
+  font-size: 1.4rem;
+    line-height: 110%;
+    margin: 0.6rem 10px 3% ;
+ }
 
 }
 
 @media only screen and (min-width: 620px) {
 
   margin: 15px 100px;
+  h5{
+      font-size: 1.6rem;
+    line-height: 110%;
+    margin: 0.6rem 2%;
+
+}
 
 }
 @media only screen and (min-width: 920px) {

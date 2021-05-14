@@ -33,7 +33,7 @@ export default function Calculadora() {
                             <a href="https://api.whatsapp.com/send?phone=5581995167878&text=Tenho%20interesse" rel="noopener noreferrer" target="_blank" >
                                 <h5 class="black-text">
                                     <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    <b> 81 99516-7878</b> - Romeu Junior{" "}
+                                    <b> 81 99516-7878</b> - Memeu
                                 </h5>
                             </a>
 
@@ -48,7 +48,7 @@ export default function Calculadora() {
                             <a href="https://api.whatsapp.com/send?phone=5581995167878&text=Tenho%20interesse" rel="noopener noreferrer" target="_blank" >
                                 <h5 class="black-text">
                                     <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    <b> 81 99516-7878</b> - Loja{" "}
+                                    <b> 81 99516-7878</b> - Loja
                                 </h5>
                             </a>
 
