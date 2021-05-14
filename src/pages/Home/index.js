@@ -14,7 +14,7 @@ export default function Calculadora() {
             <Container>
                 <div className={"logo"}>
                     <div class="col l12 s12 m12 xl12 center-align">
-                        <img src={require("../../images/logo.png")} width="250" height="87" alt={"Memeu Cell"} />
+                        <img src={require("../../images/logo2.png")} width="250" height="87" alt={"Memeu Cell"} />
                     </div>
                 </div>
                 <div className={"divw"}>
