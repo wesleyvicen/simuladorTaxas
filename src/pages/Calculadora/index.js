@@ -11,9 +11,9 @@ export default function App() {
 
     useEffect(() => {
         const taxa = {
-            master: [6.48, 8.0, 8.9, 9.9, 10.7, 11.5, 12.5, 13.5, 14.4, 15.4, 16.2, 17.1, 18.1, 19.0, 19.9, 20.8, 21.7, 22.6],
-            visa: [6.48, 8.0, 8.9, 9.9, 10.7, 11.5, 12.5, 13.5, 14.4, 15.4, 16.2, 17.1, 18.1, 19.0, 19.9, 20.8, 21.7, 22.6],
-            hiper: [6.48, 8.0, 8.9, 9.9, 10.7, 11.5, 12.5, 13.5, 14.4, 15.4, 16.2, 17.1, 18.1, 19.0, 19.9, 20.8, 21.7, 22.6],
+            master: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
+            visa: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
+            hiper: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
             elo: [11.48, 13.0, 13.9, 14.9, 15.7, 16.5, 17.5, 18.5, 19.4, 20.4, 21.2, 22.1, 23.1, 24.0, 24.9, 25.8, 26.7, 27.6],
         };
         function handleChangeInput() {
@@ -28,8 +28,8 @@ export default function App() {
                 const parcelas = taxa.master.map((item, index) => {
                     const valor = valorCompra - valorEntrada;
                     const percentual = (item * valor) / 100;
-                    const valueReturn = valor + percentual;
-                    const valorParcelas = (valor + percentual) / (index + 1);
+                    const valueReturn = valor + (3 *(index + 1)) + percentual;
+                    const valorParcelas = (valor + (3 *(index + 1)) + percentual) / (index + 1);
 
                     return {
                         parcela: index + 1,
