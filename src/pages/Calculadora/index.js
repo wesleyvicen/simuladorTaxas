@@ -14,7 +14,7 @@ export default function App() {
             master: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
             visa: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
             hiper: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
-            elo: [11.48, 13.0, 13.9, 14.9, 15.7, 16.5, 17.5, 18.5, 19.4, 20.4, 21.2, 22.1, 23.1, 24.0, 24.9, 25.8, 26.7, 27.6],
+            elo: [3.48, 4.0, 5.9, 6.9, 7.7,8.5, 9.5, 10.5, 11.4, 12.4, 13.2, 14.1, 15.1, 16.0, 16.9, 17.8, 18.7, 19.6],
         };
         function handleChangeInput() {
             if (!valorCompra) {
@@ -28,8 +28,8 @@ export default function App() {
                 const parcelas = taxa.master.map((item, index) => {
                     const valor = valorCompra - valorEntrada;
                     const percentual = (item * valor) / 100;
-                    const valueReturn = valor + (3 *(index + 1)) + percentual;
-                    const valorParcelas = (valor + (3 *(index + 1)) + percentual) / (index + 1);
+                    const valueReturn = valor + (3 * (index + 1)) + percentual;
+                    const valorParcelas = (valor + (3 * (index + 1)) + percentual) / (index + 1);
 
                     return {
                         parcela: index + 1,
@@ -52,8 +52,8 @@ export default function App() {
                 const parcelas = taxa.hiper.map((item, index) => {
                     const valor = valorCompra - valorEntrada;
                     const percentual = (item * valor) / 100;
-                    const valueReturn = valor + percentual;
-                    const valorParcelas = (valor + percentual) / (index + 1);
+                    const valueReturn = valor + (3 * (index + 1)) + percentual;
+                    const valorParcelas = (valor + (3 * (index + 1)) + percentual) / (index + 1);
 
                     return {
                         parcela: index + 1,
@@ -76,8 +76,8 @@ export default function App() {
                 const parcelas = taxa.elo.map((item, index) => {
                     const valor = valorCompra - valorEntrada;
                     const percentual = (item * valor) / 100;
-                    const valueReturn = valor + percentual;
-                    const valorParcelas = (valor + percentual) / (index + 1);
+                    const valueReturn = valor + (9 * (index + 1)) + percentual;
+                    const valorParcelas = (valor + (9 * (index + 1)) + percentual) / (index + 1);
 
                     return {
                         parcela: index + 1,
