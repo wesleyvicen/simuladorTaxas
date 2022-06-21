@@ -76,8 +76,8 @@ export default function App() {
                 const parcelas = taxa.elo.map((item, index) => {
                     const valor = valorCompra - valorEntrada;
                     const percentual = (item * valor) / 100;
-                    const valueReturn = valor + (9 * (index + 1)) + percentual;
-                    const valorParcelas = (valor + (9 * (index + 1)) + percentual) / (index + 1);
+                    const valueReturn = valor + 9 + (3 * (index + 1)) + percentual;
+                    const valorParcelas = (valor + 9 + (3 * (index + 1)) + percentual) / (index + 1);
 
                     return {
                         parcela: index + 1,
